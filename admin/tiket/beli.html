@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src='script.js' async></script>
+    <!-- alpinejs -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <link href="beli.css" rel="stylesheet">
+</head>
+<body>
+    <div class="tiket">
+        <h2>Beli Tiket disini</h2>
+        <h1>Rp. 5000</h1>
+        <form action="" method="post" id="checkoutForm">
+            <ul>
+                <li>
+                    <label for="nama">Atas Nama :</label>
+                    <input type="text" id="nama" name="nama" autocomplete="off">
+                </li>
+                <li>
+                    <label for="nowa">No WA :</label>
+                    <input type="text" id="nowa" name="nowa" autocomplete="off">
+                </li>
+                <li>
+                    <label for="jumlah">Jumlah :</label>
+                    <input type="number" id="jumlah" name="jumlah"  autocomplete="off">
+                </li>
+                <button type="submit" class='checkout-button disabled' id='checkout-button' value='checkout'>Checkout</button>
+            </ul>
+        </form>
+    </div>
+</body>
+
+</html>

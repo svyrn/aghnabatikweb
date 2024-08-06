@@ -1,0 +1,27 @@
+table,
+h2 {
+  font-family: Arial, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: auto;
+}
+
+td,
+th {
+  border: 1px solid #c7c7c7;
+  text-align: left;
+  padding: 8px;
+  width: auto; /* Tambahkan ini */
+  white-space: nowrap; /* Tambahkan ini */
+}
+
+td.preview {
+  text-align: center; /* Tambahkan ini */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
