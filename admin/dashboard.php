@@ -173,7 +173,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
                 <div class="modal-body">Apakah anda yakin ingin logout?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-danger" href="logout.php">Logout</a>
+                    <a class="btn btn-danger" href="logout.php">Logout</a> 
                 </div>
             </div>
         </div>
