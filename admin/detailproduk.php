@@ -40,7 +40,7 @@ if(isset($_POST["submit"])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin SIM - Detail Pengumuman</title>
+    <title>Detail Produk | Aghna Batik</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,6 +55,26 @@ if(isset($_POST["submit"])){
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <style>
+    .carousel-inner{
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        /* align-items: center; */
+        width: auto;
+        height: 300px;
+    }
+    .carousel-item img{
+        width: 100%;
+        height: 100px;
+        height: auto;
+        object-fit: cover;
+        border-radius: 7px;
+        transition: opacity 0.3s ease;
+    }
+    .product-image img:hover {
+        opacity: 0.7; 
+        cursor: pointer; 
+    }
     .product-card {
       display: flex;
       flex-wrap: wrap;
@@ -65,18 +85,10 @@ if(isset($_POST["submit"])){
       margin: 20px;
     }
     .product-image {
-      flex: 1 1 300px;
-      display: flex;
-      justify-content: center;
-      /* border-radius: .25rem; */
-      /* overflow: hidden; */
-      align-items: center;
-      position: relative;
-      overflow: hidden;
     }
     .product-image img {
-        width: 350px;
-        height: 350px;
+        width: 500px;
+        height: 300px;
         object-fit: cover;
         border-radius:7px;
         transition: opacity 0.3s ease;
@@ -109,7 +121,7 @@ if(isset($_POST["submit"])){
 
     .product-info {
       flex: 1 1 300px;
-      padding: 13px;
+      /* padding: 13px; */
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -135,6 +147,25 @@ if(isset($_POST["submit"])){
       .product-info h2 {
         width: 100%;
       }
+    }
+
+    .image-container {
+        overrflow: hidden;
+        width: 100%;
+        padding-bottom: 100%; /* 1:1 Aspect Ratio */
+        position: relative;
+    }
+
+    .image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 7px;
     }
   </style>
 
@@ -188,40 +219,26 @@ if(isset($_POST["submit"])){
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <!-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        
 
                         
 
@@ -253,54 +270,112 @@ if(isset($_POST["submit"])){
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Detail Produk</h6>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Detail Produk</h1>
                     </div>
-                    <div class="product-card shadow mb-4">
-                                <div class="product-image">
-                                    <img src="img/produk/<?= $target['gambar'] ?>" alt="Product Image" onclick="openImageInNewTab('img/produk/<?= $target['gambar'] ?>')">
-                                </div>
-                                <div class="product-info">
-                                    <table class="subinfo" >
-                                        
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2"><h2><?= $target['motif'] ?></h2></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jenis Kain</td>
-                                                <td>: <?= $target['jeniskain'] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jenis Batik</td>
-                                                <td>: <?= $target['jenisbatik'] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Size</td>
-                                                <td>: <?= $target['size'] ?></p></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stok</td>
-                                                <td>: <?= $target['stok'] ?></p></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Diupload</td>
-                                                <td>: <?= $target['tanggal'] ?></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                <div class="d-flex">
-                                    <a href="editproduk.php?id=<?= $target['id'] ?>"" class="btn btn-outline-primary mr-2">Edit</a>
-                                    <a href="produk.php" class="btn btn-outline-secondary">Kembali</a>
-                                </div>
-                                </div>
-                            </div>
-
-
-                </div>
 
                     
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Rincian</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="product-info">
+                                        <table class="subinfo" >
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2"><h2><?= $target['motif'] ?></h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jenis Kain</td>
+                                                    <td>: <?= $target['jeniskain'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jenis Batik</td>
+                                                    <td>: <?= $target['jenisbatik'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Size</td>
+                                                    <td>: <?= $target['size'] ?></p></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Stok</td>
+                                                    <td>: <?= $target['stok'] ?></p></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Harga</td>
+                                                    <td>: <?= $target['harga'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Diupload</td>
+                                                    <td>: <?= $target['tanggal'] ?></td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div><br>
+                                    <div class="d-flex">
+                                        <a href="editproduk.php?id=<?= $target['id'] ?>"" class="btn btn-outline-primary mr-2">Edit</a>
+                                        <a href="produk.php" class="btn btn-outline-secondary">Kembali</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Preview</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div id="demo" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ul class="carousel-indicators">
+                                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                        <li data-target="#demo" data-slide-to="1"></li>
+                                        <li data-target="#demo" data-slide-to="2"></li>
+                                    </ul>
+
+                                    <!-- The slideshow -->
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                        <img src="img/produk/<?= $target['gambar'] ?>" alt="Gambar utama" onclick="openImageInNewTab('img/produk/<?= $target['gambar'] ?>')" >
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="img/produk1/<?= $target['gambar2'] ?>" alt="Gambar pendukung 1" onclick="openImageInNewTab('img/produk1/<?= $target['gambar2'] ?>')">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="img/produk2/<?= $target['gambar3'] ?>" alt="Gambarr pendukung 2" onclick="openImageInNewTab('img/produk2/<?= $target['gambar3'] ?>')">
+                                        </div>
+                                    </div>
+
+                                    <!-- Left and right controls -->
+                                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
