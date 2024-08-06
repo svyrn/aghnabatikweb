@@ -12,6 +12,7 @@ if(isset($_COOKIE['id'])&&isset($_COOKIE['key'])){
     // cek cookie and user
     if($key === hash('sha256', $row['username'])){
         $_SESSION['login'] = true;
+        $_SESSION['username'] = $row['username']; // Menyimpan username ke dalam sesi
     }
 }
 if(isset($_SESSION['login'])){
@@ -20,30 +21,30 @@ if(isset($_SESSION['login'])){
 }
 
 
-    if(isset($_POST['login'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $result = mysqli_query($conn,"SELECT * FROM users WHERE username = '$username'");
-        if(mysqli_num_rows($result) === 1){
-            $row = mysqli_fetch_assoc($result);
-            if(password_verify($password,$row['password'])){
-                // session
-                $_SESSION['login']=true;
+    $result = mysqli_query($conn,"SELECT * FROM users WHERE username = '$username'");
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password,$row['password'])){
+            // session
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $row['username']; // Menyimpan username ke dalam sesi
 
-                // ingatsaya
-                if(isset($_POST['ingat'])){
-                    setcookie('id',$row['id'], time()+120);
-                    setcookie('key',hash('sha256',$row['username']), time()+120);
-                }
-                header("location: dashboard.php");
-                exit;
+            // ingatsaya
+            if(isset($_POST['ingat'])){
+                setcookie('id',$row['id'], time()+120);
+                setcookie('key',hash('sha256',$row['username']), time()+120);
             }
+            header("location: dashboard.php");
+            exit;
         }
-        $error = true;
     }
+    $error = true;
+}
 
-    
 ?>
 
 <!DOCTYPE html>

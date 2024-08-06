@@ -1,11 +1,11 @@
 <?php 
-require 'functions.php';
+
 session_start();
 if(!isset($_SESSION['login'])){
     header('location: index.php');
     exit;
 }
-
+require 'functions.php';
 $id = $_GET['id'];
 
 if(hapus($id)>0){

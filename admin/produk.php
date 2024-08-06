@@ -253,7 +253,7 @@ $produk = query('SELECT*FROM produk');
                                         <?php foreach($produk as $row): ?>
                                         <tr>
                                             <td><?= $i ?></td>
-                                            <td>
+                                            <td  style="text-align:center;">
                                                 <img class="imgpreview" src="img/produk/<?= $row['gambar'] ?>" alt="" onclick="openImageInNewTab('img/produk/<?= $row['gambar'] ?>') ">
                                             </td>
                                             <td><?= $row['motif'] ?></td>
@@ -269,6 +269,26 @@ $produk = query('SELECT*FROM produk');
                                               <button type="button" class="btn btn-danger ex" data-toggle="modal" data-target="#hapusproduk">
                                                 <i class="fas fa-trash fa-fw"></i>
                                               </button>
+
+                                                  <!-- Hapus Modal-->
+                                            <div class="modal fade" id="hapusproduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">Apakah anda yakin ingin menghapus produk ini?</div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                                            <a class="btn btn-danger" href="hapusproduk.php?id=<?= $row['id']?>" >Hapus</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             
                                             </td>
                                         </tr>
@@ -307,25 +327,7 @@ $produk = query('SELECT*FROM produk');
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="hapusproduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Apakah anda yakin ingin menghapus produk ini?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-danger" href="hapusproduk.php?id=<?= $row['id'] ?>" >Hapus</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
