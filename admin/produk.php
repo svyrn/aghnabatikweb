@@ -66,59 +66,24 @@ $produk = query('SELECT*FROM produk');
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php" id="title">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-text mx-3">Aghna Batik</div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li> -->
-
-
             <li class="nav-item">
                 <a class="nav-link" href="produk.php">
                     <i class="fas fa-fw fa-cube"></i>
                     <span>Produk</span></a>
             </li>
-
-        
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Profil:</h6>
-                        <a class="collapse-item" href="sejarah.php">Sejarah</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Lainnya:</h6>
-                        <a class="collapse-item" href="galeri.php">Galeri</a>
-                        <a class="collapse-item" href="pengumuman.php">Pengumuman</a>
-                    </div>
-                </div>
-            </li> -->
-
-            <!-- Divider -->
+            <li class="nav-item">
+                <a class="nav-link" href="user.php">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Users</span></a>
+            </li>
             <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
         </ul>
         <!-- End of Sidebar --> 
 
@@ -211,8 +176,9 @@ $produk = query('SELECT*FROM produk');
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Daftar Produk</h1>
+                    </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -265,7 +231,7 @@ $produk = query('SELECT*FROM produk');
                                             <!-- <td><?= date('d-m-Y',strtotime($row['tanggal'])); ?></td> -->
                                             <td>                                                
                                               <a href="detailproduk.php?id=<?= $row['id'] ?>" class="btn btn-primary ex" data-target="#detailbatik"><i class="fas fa-info fa-fw"></i></a><br>
-                                              <a href="editproduk.php?id=<?= $row['id'] ?>" class="btn btn-success ex"><i class="fas fa-edit fa-fw"></i></a><br>
+                                              <a href="editproduk.php?id=<?= $row['id'] ?>" class="btn btn-warning ex"><i class="fas fa-edit fa-fw"></i></a><br>
                                               <button type="button" class="btn btn-danger ex" data-toggle="modal" data-target="#hapusproduk">
                                                 <i class="fas fa-trash fa-fw"></i>
                                               </button>

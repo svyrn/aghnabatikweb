@@ -38,26 +38,21 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-text mx-3">Aghna Batik</div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
             <li class="nav-item">
                 <a class="nav-link" href="produk.php">
                     <i class="fas fa-fw fa-cube"></i>
-                    <span>Produk</span>
-                </a>
+                    <span>Produk</span></a>
             </li>
-
-            <!-- Divider -->
+            <li class="nav-item">
+                <a class="nav-link" href="user.php">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Users</span></a>
+            </li>
             <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -125,7 +120,9 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
