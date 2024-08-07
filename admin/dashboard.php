@@ -5,7 +5,26 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 require 'functions.php';
+
+// Mengambil username dari session
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
+
+// Query untuk mendapatkan jumlah motif
+$result_cap = mysqli_query($conn, "SELECT COUNT(*) AS total_cap FROM produk WHERE jenisbatik = 'Cap'");
+$row_cap = mysqli_fetch_assoc($result_cap);
+$total_cap = $row_cap['total_cap'];
+
+$result_tulis = mysqli_query($conn, "SELECT COUNT(*) AS total_tulis FROM produk WHERE jenisbatik = 'Tulis'");
+$row_tulis = mysqli_fetch_assoc($result_tulis);
+$total_tulis = $row_tulis['total_tulis'];
+
+$result_total = mysqli_query($conn, "SELECT COUNT(*) AS total_produk FROM produk");
+$row_total = mysqli_fetch_assoc($result_total);
+$total_produk = $row_total['total_produk'];
+
+$result_users = mysqli_query($conn, "SELECT COUNT(*) AS total_users FROM users");
+$row_users = mysqli_fetch_assoc($result_users);
+$total_users = $row_users['total_users'];
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +123,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $username; ?></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <!-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> -->
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -120,16 +139,84 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                    <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Dashboard</h6>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Total Batik -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Batik</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_produk; ?></div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h4>Selamat Datang di Dashboard Admin Aghna Batik</h4>
+
+                        <!-- Cap -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Cap</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_cap; ?></div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tulis -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Tulis</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_tulis; ?></div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-pencil-square fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Users -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Users</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_users; ?></div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
