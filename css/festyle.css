@@ -12,11 +12,15 @@
   text-decoration: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--bg);
   color: black;
-  min-height: 2000px;
+  /* min-height: 6000px; */
 }
 
 /* navbar */
@@ -165,6 +169,123 @@ body {
   box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
 }
 
+/* about section */
+.about,
+.produk,
+.lokasi {
+  padding: 8rem 7% 1.4rem;
+}
+
+.about h2,
+.produk h2,
+.lokasi h2 {
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.about h2 span,
+.produk h2 span {
+  color: var(--primary);
+}
+
+.about .xparent {
+  display: flex;
+}
+
+.about .xparent .aboutimg {
+  flex: 1 1 45rem;
+}
+
+.about .xparent .aboutimg img {
+  width: 100%;
+}
+
+.about .xparent .content {
+  flex: 1 1 35rem;
+  padding: 0 1rem;
+}
+
+.about .xparent .content h3 {
+  font-size: 1.9rem;
+}
+
+.about .xparent .content p {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.about .xparent .aboutimgowner .owner {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 50%;
+  justify-content: center;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* produk */
+.produk p {
+  /* text-align: center; */
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* lokasi */
+.lokasi .xparent {
+  display: flex;
+  margin-top: 2rem;
+  background-color: #e7e7e7;
+  flex-wrap: wrap;
+}
+
+.lokasi .xparent .map {
+  flex: 1 1 45rem;
+  width: 100%;
+  height: 37rem;
+  object-fit: cover;
+}
+
+/* footer */
+footer {
+  background-color: var(--primary);
+  text-align: center;
+  padding: 1rem 0;
+}
+
+footer .sosmeds {
+  padding: 1rem 0;
+}
+
+footer .sosmeds a {
+  color: var(--bg);
+  margin: 1rem;
+  font-size: 2.3rem;
+}
+
+footer .sosmeds a:hover,
+footer .links a:hover {
+  color: black;
+  transition: 0.3s ease-in;
+}
+
+footer .links {
+  margin-bottom: 1rem;
+}
+
+footer .links a {
+  color: var(--bg);
+  padding: 0.7rem 1rem;
+}
+
+footer .credit {
+  color: var(--bg);
+  font-size: 10px;
+  font-weight: 700;
+}
+
 /* ===============MediaQueries====================== */
 @media (max-width: 1366px) {
   html {
@@ -182,6 +303,7 @@ body {
   }
 
   .navbar .navbar-nav {
+    backdrop-filter: blur(7px);
     position: absolute;
     top: 100%;
     right: -100%;
@@ -209,10 +331,46 @@ body {
   .navbar .navbar-nav a:hover::after {
     transform: scaleX(0.4);
   }
-}
 
-@media (max-width: 450px) {
-  html {
-    font-size: 70%;
+  /*  */
+  .about .xparent {
+    flex-wrap: wrap;
+  }
+
+  .about .xparent .aboutimg img {
+    height: 25rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about .xparent .aboutimgowner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about .xparent .aboutimgowner .owner {
+    height: 25rem;
+    width: 25rem;
+    border-radius: 50%;
+    justify-content: center;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about .xparent .content {
+    padding: 0;
+  }
+  .about .xparent .content h3,
+  .sub {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  @media (max-width: 450px) {
+    html {
+      font-size: 70%;
+    }
   }
 }

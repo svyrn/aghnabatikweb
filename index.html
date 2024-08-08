@@ -13,12 +13,12 @@
       rel="stylesheet"
     />
 
+    <!-- icon -->
     <script src="https://unpkg.com/feather-icons"></script>
-
-    <!-- <script
+    <script
       src="https://kit.fontawesome.com/f30d413aa0.js"
       crossorigin="anonymous"
-    ></script> -->
+    ></script>
 
     <!-- js -->
   </head>
@@ -32,7 +32,7 @@
           <a href="#">Produk</a>
           <a href="#">Cara Belanja</a>
           <a href="#">Galeri</a>
-          <a href="#">Tentang</a>
+          <a href="#about">Tentang</a>
         </div>
 
         <div class="navbar-extra">
@@ -45,11 +45,11 @@
     </header>
     <!-- <script src="js/fe.js"></script> -->
 
-    <div class="hero" #="home">
+    <section class="hero" #="home">
       <main class="content">
         <div class="caption">
           <div class="captions">
-            <h1>Selamat Datang di Aghna Batik</h1>
+            <h1>Aghna Batik</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
               molestias?
@@ -60,7 +60,108 @@
           </div>
         </div>
       </main>
-    </div>
+    </section>
+    <!-- produk start -->
+    <section id="produk" class="produk">
+      <h2>Daftar <span>Produk</span></h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+        nam eos earum sequi iste amet? Blanditiis facilis beatae excepturi
+        labore?
+      </p>
+    </section>
+    <!-- produk end -->
+    <!-- about start -->
+    <section id="about" class="about">
+      <h2>Tentang <span>Kami</span></h2>
+
+      <div class="xparent">
+        <div class="aboutimg">
+          <img src="img/about/dummy.jpg" alt="Tentang kami" />
+        </div>
+        <div class="content">
+          <h3>Lorem Ipsum</h3>
+          <!-- <p class="sub">Owner</p> -->
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
+            quibusdam blanditiis perferendis excepturi obcaecati est explicabo
+            provident suscipit tempore voluptatum!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+            eum a ipsam odit est laudantium quidem esse repudiandae quia
+            voluptates sapiente ratione, distinctio odio placeat tenetur ab
+            unde. Tenetur, dolores?
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- about end -->
+    <!--  -->
+    <!-- about owner start -->
+    <section id="about" class="about">
+      <h2>Owner</h2>
+
+      <div class="xparent">
+        <div class="aboutimgowner">
+          <img src="img/about/dummy.jpg" class="owner" alt="Tentang kami" />
+        </div>
+        <div class="content">
+          <h3>Lorem Ipsum</h3>
+          <!-- <p class="sub">Owner</p> -->
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
+            quibusdam blanditiis perferendis excepturi obcaecati est explicabo
+            provident suscipit tempore voluptatum!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+            eum a ipsam odit est laudantium quidem esse repudiandae quia
+            voluptates sapiente ratione, distinctio odio placeat tenetur ab
+            unde. Tenetur, dolores?
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- about owner end -->
+    <!--  -->
+    <!-- lokasi start-->
+    <section class="lokasi" id="lokasi">
+      <h2>Lokasi</h2>
+      <div class="xparent">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.276753254633!2d109.64400057500366!3d-7.6533623923628875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ab5423250d8a5%3A0xadd90e3b2f271fe4!2sAghna%20Colletion!5e0!3m2!1sid!2sid!4v1723145401967!5m2!1sid!2sid"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        ></iframe>
+      </div>
+    </section>
+    <!-- lokasi end-->
+
+    <!--  -->
+    <!-- footen start -->
+    <footer>
+      <div class="sosmeds">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+      <div class="links">
+        <a href="#">Home</a>
+        <a href="#">Produk</a>
+        <a href="#">Cara Belanja</a>
+        <a href="#">Galeri</a>
+        <a href="#">Tentang</a>
+      </div>
+      <div class="credit">
+        <p>&copy;Aghna Batik 2024</p>
+      </div>
+    </footer>
+    <!-- footen end -->
     <script>
       feather.replace();
     </script>
