@@ -6,7 +6,25 @@ if(!isset($_SESSION['login'])){
 }
 require 'functions.php';
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
-$produk = query('SELECT*FROM produk');
+
+    if(isset($_POST["submit"])){
+
+        var_dump($_POST); 
+        var_dump($_FILES); die;
+
+
+        if(tambahpost($_POST) > 0){
+            echo "<script>
+                alert('Berhasil menambahkan postingan');
+                document.location.href='galeri.php';
+            </script>";
+        }else{
+            echo "<script>
+                alert('Gagal menambahkan postingan');
+                document.location.href='galeri.php';
+            </script>";
+        }
+    }
 
  ?>
 
@@ -21,8 +39,7 @@ $produk = query('SELECT*FROM produk');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Produk | Aghna Batik</title>
-    <!-- <link rel="icon" type="image/x-icon" href="https://images.app.goo.gl/2niFTLbpDgTKaf3CA"> -->
+    <title>Tambah Post | Aghna Batik</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,32 +48,42 @@ $produk = query('SELECT*FROM produk');
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <style>
-        
-        .imgpreview{
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius:7px;
-            transition: opacity 0.3s ease;
+    .custom-file-input {
+      display: none;
+    }
+
+    .input-group-prepend {
+      margin-right: -1px;
+    }
+    .input-group-text {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+    }
+
+    @media screen and (min-width:768px){
+        .exparent{
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
         }
-        .imgpreview:hover {
-            opacity: 0.7; 
-            cursor: pointer; 
-            }
+
         .ex{
-            margin: 2px;
-        }
+            padding: 0px 20px 0px 0px;
 
-        @media print{
-
+            width:50%;
+            display: flex;
+            flex-direction: column;
         }
-    </style>
+    }
+
+  </style>
 
 </head>
 
@@ -75,6 +102,11 @@ $produk = query('SELECT*FROM produk');
                 <a class="nav-link" href="produk.php">
                     <i class="fas fa-fw fa-cube"></i>
                     <span>Produk</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="galeri.php">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Galeri</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="user.php">
@@ -96,7 +128,6 @@ $produk = query('SELECT*FROM produk');
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
@@ -104,20 +135,6 @@ $produk = query('SELECT*FROM produk');
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
-
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -174,94 +191,47 @@ $produk = query('SELECT*FROM produk');
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Produk</h1>
-                    </div>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Produk</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tambah Post</h6>
                         </div>
-                        <!-- <div class="card-body">
-                            <form action="" method="post">
-                                <textarea name="sejarah" id="sejarah" cols="30" rows="10" class="table table-bordered"></textarea>
-                                <button type="submit" class="btn btn-primary btn-icon-split btn-lg">OK</button>
+                        <div class="card-body">
+                            <form action="" method="post" enctype="multipart/form-data">
+                            <div class="exparent">
+                                <div class="ex">
+                                    <div class="form-group">
+                                        <label for="caption">Caption :</label>
+                                        <input type="text" name="caption" class="form-control" id="caption" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="ex">
+                                    <div class="form-group">
+                                        <label for="foto">Preview :</label>
+                                        <div class="input-group">
+                                            <input type="file" name="foto" id="foto" class="custom-file-input" required>
+                                            <label class="form-control" for="foto" id="foto-label">Pilih file</label>
+                                            <div class="input-group-append">
+                                            <button type="button" class="btn btn-primary" onclick="document.getElementById('foto').click()">Browse</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="deskripsi">Deskripsi:</label>
+                                <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi"></textarea>
+                            </div> 
+                               
+                            <!-- </div> -->
+                                <!-- <BR>                                             -->
+                                <button type="submit" name="submit" class="btn btn-success">Simpan</button>
+                                <button type="button" class="btn btn-danger"><a href="produk.php" class="text-white text-decoration-none">Batalkan</a></button>
                             </form>
-                        </div> -->
-                        <div class="ex">
-                            <div class="card-body" style="display:flex;justify-content:space-between;">
-                                <a href="addproduk.php" class="btn btn-success"><i class="fas fa-plus fa-fw"></i> Tambah</a>
-                                <a href="print.php" target="blank" class="btn btn-info"><i class="fas fa-print fa-fw"></i> Cetak</a>
-                            </div>  
                         </div>
                         
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Preview</th>
-                                            <th>Motif</th>
-                                            <th>J.Kain</th>
-                                            <th>J.Batik</th>
-                                            <th>Size</th>
-                                            <th>Stok</th>
-                                            <th>Harga</th>
-                                            <!-- <th>Diupload</th> -->
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i =1; ?>
-                                        <?php foreach($produk as $row): ?>
-                                        <tr>
-                                            <td><?= $i ?></td>
-                                            <td  style="text-align:center;">
-                                                <img class="imgpreview" src="img/produk/<?= $row['gambar'] ?>" alt="" onclick="openImageInNewTab('img/produk/<?= $row['gambar'] ?>') ">
-                                            </td>
-                                            <td><?= $row['motif'] ?></td>
-                                            <td><?= $row['jeniskain'] ?></td>
-                                            <td><?= $row['jenisbatik'] ?></td>
-                                            <td><?= $row['size'] ?></td>
-                                            <td><?= $row['stok'] ?></td>
-                                            <td>Rp. <?= $row['harga'] ?></td>
-                                            <!-- <td><?= date('d-m-Y',strtotime($row['tanggal'])); ?></td> -->
-                                            <td>                                                
-                                              <a href="detailproduk.php?id=<?= $row['id'] ?>" class="btn btn-primary ex" data-target="#detailbatik"><i class="fas fa-info fa-fw"></i></a><br>
-                                              <a href="editproduk.php?id=<?= $row['id'] ?>" class="btn btn-warning ex"><i class="fas fa-edit fa-fw"></i></a><br>
-                                              <button type="button" class="btn btn-danger ex" data-toggle="modal" data-target="#hapusproduk">
-                                                <i class="fas fa-trash fa-fw"></i>
-                                              </button>
-
-                                                  <!-- Hapus Modal-->
-                                            <div class="modal fade" id="hapusproduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">Apakah anda yakin ingin menghapus produk ini?</div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                                            <a class="btn btn-danger" href="hapusproduk.php?id=<?= $row['id']?>" >Hapus</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            </td>
-                                        </tr>
-                                        <?php $i++; ?>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        
                     </div>
 
                 </div>
@@ -291,7 +261,6 @@ $produk = query('SELECT*FROM produk');
         <i class="fas fa-angle-up"></i>
     </a>
 
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -312,36 +281,6 @@ $produk = query('SELECT*FROM produk');
         </div>
     </div>
 
-
-
-
-    <!-- The Modal -->
-<div class="modal" id="detailbatik">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -358,13 +297,24 @@ $produk = query('SELECT*FROM produk');
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-    
-    <!-- img preview -->
+
     <script>
-        function openImageInNewTab(imageSrc) {
-            window.open(imageSrc, '_blank');
-        }
-    </script>
+    // Update the label text with the selected file name
+    document.querySelectorAll('.custom-file-input').forEach(input => {
+      input.addEventListener('change', function () {
+        const label = this.nextElementSibling;
+        label.textContent = this.files.length > 0 ? this.files[0].name : 'Pilih file';
+      });
+    });
+  </script>
+
+
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 

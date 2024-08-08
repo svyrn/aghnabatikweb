@@ -41,6 +41,65 @@ function tambah($data){
     return mysqli_affected_rows($conn);
 }
 
+// function tambahpost($data){
+//     global $conn;
+
+//     $caption = htmlspecialchars($data['caption']);
+//     $deskripsi = htmlspecialchars($data['deskripsi']);
+
+//     // upload gambar
+//     $foto = uploadfoto();
+//     if(!$foto){
+//         return false;
+//     }
+
+//     $query = "INSERT INTO galeri (foto, caption, deskripsi) VALUES ('$foto', '$caption', '$deskripsi')";
+//     mysqli_query($conn, $query);
+    
+//     return mysqli_affected_rows($conn);
+// }
+
+// function uploadfoto(){
+//     $namaFile = $_FILES['foto']['name'];
+//     $ukuranFile = $_FILES['foto']['size'];
+//     $error = $_FILES['foto']['error'];
+//     $tmpName = $_FILES['foto']['tmp_name'];
+
+//     // apakah ada gbr yg diuplod?
+//     if($error === 4){
+//         echo "<script>alert('Mohon masukan foto dulu.');</script>";
+//         return false;
+//     }
+
+//     $ekstensifotorValid = ['jpg','jpeg','png','raw'];
+//     $ekstensifoto = explode('.',$namaFile);
+//     $ekstensifoto = strtolower(end($ekstensifoto));
+//     if(!in_array($ekstensifoto,$ekstensifotorValid)){
+//         echo "<script>alert('Silahkan upload dengan format jpg/jpeg/png.');</script>";
+//         return false;
+//     }
+
+//     if($ukuranFile>1000000){
+//         echo "<script>alert('Ukuran foto terlalu besar');</script>";
+//         return false;
+//     }
+
+//     // generate nama
+//     $namaFileBaru = uniqid();
+//     $namaFileBaru.='.';
+//     $namaFileBaru.=$ekstensifoto;
+
+//     if(move_uploaded_file($tmpName,'img/post/' . $namaFileBaru)){
+//         echo "<P>FILE UPLOADED TO OK</P>";
+//     } else {
+//         echo "<P>MOVE UPLOADED FILE FAILED!!</P>";
+//         print_r(error_get_last());
+    
+//     }
+//     return $namaFileBaru;
+
+// }
+
 // UPLOAD PRODUK
 function upload(){
     $namaFile = $_FILES['gambar']['name'];
@@ -144,6 +203,42 @@ function upload3(){
     return $namaFileBaru;
 
 }
+
+// UPLOAD POSTINGAN GALERI
+function uploadpost(){
+    $namaFile = $_FILES['gambar']['name'];
+    $ukuranFile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    // apakah ada gbr yg diuplod?
+    if($error === 4){
+        echo "<script>alert('Mohon masukan gambar dulu.');</script>";
+        return false;
+    }
+
+    $ekstensiGambarrValid = ['jpg','jpeg','png','raw'];
+    $ekstensiGambar = explode('.',$namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if(!in_array($ekstensiGambar,$ekstensiGambarrValid)){
+        echo "<script>alert('Silahkan upload dengan format jpg/jpeg/png.');</script>";
+        return false;
+    }
+
+    if($ukuranFile>1000000){
+        echo "<script>alert('Ukuran gambar terlalu besar');</script>";
+        return false;
+    }
+
+    // generate nama
+    $namaFileBaru = uniqid();
+    $namaFileBaru.='.';
+    $namaFileBaru.=$ekstensiGambar;
+
+    move_uploaded_file($tmpName,'img/produk/' . $namaFileBaru);
+    return $namaFileBaru;
+
+}
 // ===========================================================================================
 function hapus($id) {
     // Koneksi ke database
@@ -244,43 +339,6 @@ function edit($data){
 }
 
 
-
-
-
-
-function uploadfoto(){
-    $namaFileFoto = $_FILES['foto']['name'];
-    $ukuranFileFoto = $_FILES['foto']['size'];
-    $error = $_FILES['foto']['error'];
-    $tmpName = $_FILES['foto']['tmp_name'];
-
-    if($error === 4){
-        echo "<script>alert('Mohon masukan foto');</script>";
-        return false;
-    }
-
-    $ekstensiFotoValid = ['jpg','jpeg','png'];
-    $ekstensiFoto = explode('.',$namaFileFoto);
-    $ekstensiFoto = strtolower(end($ekstensiFoto));
-    if(!in_array($ekstensiFoto,$ekstensiFotoValid)){
-        echo "<script>alert('Mohon masukan file format foto');</script>";
-        return false;
-    }
-
-    if($ukuranFileFoto>7000000){
-        echo "<script>alert('Ukuran foto terlalu besar');</script>";
-        return false;
-    }
-
-    // generate nama
-    $namaFileFotoBaru = uniqid();
-    $namaFileFotoBaru.='.';
-    $namaFileFotoBaru.=$ekstensiFoto;
-
-    move_uploaded_file($tmpName,'img/galeri/' . $namaFileFotoBaru);
-    return $namaFileFotoBaru;
-
-}
 
 
 function signup($data){

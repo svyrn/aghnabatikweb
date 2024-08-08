@@ -1,12 +1,12 @@
 <?php 
 session_start();
 if(!isset($_SESSION['login'])){
-    header('location: index.php');
+    header('location: login.php');
     exit;
 }
 require 'functions.php';
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin';
-$produk = query('SELECT*FROM produk');
+$galeri = query('SELECT*FROM galeri');
 
  ?>
 
@@ -21,7 +21,7 @@ $produk = query('SELECT*FROM produk');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Produk | Aghna Batik</title>
+    <title>Galeri Posting | Aghna Batik</title>
     <!-- <link rel="icon" type="image/x-icon" href="https://images.app.goo.gl/2niFTLbpDgTKaf3CA"> -->
 
     <!-- Custom fonts for this template -->
@@ -77,6 +77,11 @@ $produk = query('SELECT*FROM produk');
                     <span>Produk</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="galeri.php">
+                    <i class="fas fa-fw fa-cube"></i>
+                    <span>Galeri</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="user.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Users</span></a>
@@ -104,20 +109,6 @@ $produk = query('SELECT*FROM produk');
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
-
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -175,23 +166,16 @@ $produk = query('SELECT*FROM produk');
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Produk</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Galeri</h1>
                     </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Produk</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Post</h6>
                         </div>
-                        <!-- <div class="card-body">
-                            <form action="" method="post">
-                                <textarea name="sejarah" id="sejarah" cols="30" rows="10" class="table table-bordered"></textarea>
-                                <button type="submit" class="btn btn-primary btn-icon-split btn-lg">OK</button>
-                            </form>
-                        </div> -->
                         <div class="ex">
-                            <div class="card-body" style="display:flex;justify-content:space-between;">
-                                <a href="addproduk.php" class="btn btn-success"><i class="fas fa-plus fa-fw"></i> Tambah</a>
-                                <a href="print.php" target="blank" class="btn btn-info"><i class="fas fa-print fa-fw"></i> Cetak</a>
+                            <div class="card-body">
+                                <a href="addpost.php" class="btn btn-success"><i class="fas fa-plus fa-fw"></i> Tambah</a>
                             </div>  
                         </div>
                         
@@ -202,34 +186,24 @@ $produk = query('SELECT*FROM produk');
                                         <tr>
                                             <th>No.</th>
                                             <th>Preview</th>
-                                            <th>Motif</th>
-                                            <th>J.Kain</th>
-                                            <th>J.Batik</th>
-                                            <th>Size</th>
-                                            <th>Stok</th>
-                                            <th>Harga</th>
-                                            <!-- <th>Diupload</th> -->
+                                            <th>Caption</th>
+                                            <th>Tanggal</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i =1; ?>
-                                        <?php foreach($produk as $row): ?>
+                                        <?php foreach($galeri as $row): ?>
                                         <tr>
                                             <td><?= $i ?></td>
                                             <td  style="text-align:center;">
-                                                <img class="imgpreview" src="img/produk/<?= $row['gambar'] ?>" alt="" onclick="openImageInNewTab('img/produk/<?= $row['gambar'] ?>') ">
+                                                <img class="imgpreview" src="img/galeri/<?= $row['foto'] ?>" alt="" onclick="openImageInNewTab('img/galeri/<?= $row['foto'] ?>') ">
                                             </td>
-                                            <td><?= $row['motif'] ?></td>
-                                            <td><?= $row['jeniskain'] ?></td>
-                                            <td><?= $row['jenisbatik'] ?></td>
-                                            <td><?= $row['size'] ?></td>
-                                            <td><?= $row['stok'] ?></td>
-                                            <td>Rp. <?= $row['harga'] ?></td>
-                                            <!-- <td><?= date('d-m-Y',strtotime($row['tanggal'])); ?></td> -->
-                                            <td>                                                
-                                              <a href="detailproduk.php?id=<?= $row['id'] ?>" class="btn btn-primary ex" data-target="#detailbatik"><i class="fas fa-info fa-fw"></i></a><br>
-                                              <a href="editproduk.php?id=<?= $row['id'] ?>" class="btn btn-warning ex"><i class="fas fa-edit fa-fw"></i></a><br>
+                                            <td><?= $row['caption'] ?></td>
+                                            <td><?= date('d-m-Y',strtotime($row['tanggalpost'])); ?></td>
+                                            <td style="text-align:center;">                                                
+                                              <a href="detailpost.php?id=<?= $row['id'] ?>" class="btn btn-primary ex"><i class="fas fa-info fa-fw"></i></a><br>
+                                              <a href="editpost.php?id=<?= $row['id'] ?>" class="btn btn-warning ex"><i class="fas fa-edit fa-fw"></i></a><br>
                                               <button type="button" class="btn btn-danger ex" data-toggle="modal" data-target="#hapusproduk">
                                                 <i class="fas fa-trash fa-fw"></i>
                                               </button>
@@ -245,10 +219,10 @@ $produk = query('SELECT*FROM produk');
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body">Apakah anda yakin ingin menghapus produk ini?</div>
+                                                        <div class="modal-body">Apakah anda yakin ingin menghapus postingan ini?</div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                                            <a class="btn btn-danger" href="hapusproduk.php?id=<?= $row['id']?>" >Hapus</a>
+                                                            <a class="btn btn-danger" href="hapuspost.php?id=<?= $row['id']?>" >Hapus</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -311,35 +285,6 @@ $produk = query('SELECT*FROM produk');
             </div>
         </div>
     </div>
-
-
-
-
-    <!-- The Modal -->
-<div class="modal" id="detailbatik">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-
-</div>
 
 
     <!-- Bootstrap core JavaScript-->
