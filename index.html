@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
-    <link rel="stylesheet" href="admin/css/festyle.css" />
+    <link rel="stylesheet" href="css/festyle.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,10 +13,12 @@
       rel="stylesheet"
     />
 
-    <script
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- <script
       src="https://kit.fontawesome.com/f30d413aa0.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
 
     <!-- js -->
   </head>
@@ -28,17 +30,40 @@
         <div class="navbar-nav">
           <a href="#">Home</a>
           <a href="#">Produk</a>
+          <a href="#">Cara Belanja</a>
+          <a href="#">Galeri</a>
           <a href="#">Tentang</a>
         </div>
 
         <div class="navbar-extra">
-          <a href="#" id="cari"><i class="fa-solid fa-magnifying-glass"></i></a>
-          <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-          <a href="#" id="menus"><i class="fa-solid fa-bars"></i></a>
+          <a href="#" id="cari"><i data-feather="search"></i></a>
+          <a href="#" id="cart"><i data-feather="shopping-cart"></i></a>
+          <a href="#" id="menu"><i data-feather="menu"></i></a>
         </div>
       </nav>
       <!-- navbar e -->
     </header>
+    <!-- <script src="js/fe.js"></script> -->
+
+    <div class="hero" #="home">
+      <main class="content">
+        <div class="caption">
+          <div class="captions">
+            <h1>Selamat Datang di Aghna Batik</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
+              molestias?
+            </p>
+          </div>
+          <div class="quicklink">
+            <a href="#" class="cta">Belanja</a>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      feather.replace();
+    </script>
     <script src="js/fe.js"></script>
   </body>
 </html>
