@@ -1,5 +1,5 @@
 :root {
-  --primary: #9d59f7;
+  --primary: #6750ec;
   --bg: #fff;
 }
 
@@ -313,7 +313,8 @@ body {
   align-items: center;
   /* justify-content: center; */
   margin-bottom: 0.5rem;
-  padding: 10px 15px; /* Tambahkan padding untuk memberikan ruang di sekitar konten */
+  padding-top: 5px; /* Tambahkan padding untuk memberikan ruang di sekitar konten */
+  padding-bottom: 5px; /* Tambahkan padding untuk memberikan ruang di sekitar konten */
   width: 100%; /* Memastikan lebar elemen a penuh */
   text-align: center; /* Memastikan teks berada di tengah */
 }
@@ -441,6 +442,12 @@ footer .credit {
     margin-top: 1rem;
     font-size: 1.8rem;
     text-align: center;
+  }
+
+  .lokasi .xparent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 
   @media (max-width: 450px) {
