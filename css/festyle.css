@@ -1,6 +1,7 @@
 :root {
-  --primary: #6750ec;
+  --primary: #ce2121;
   --bg: #fff;
+  --hover1: #8c78ff;
 }
 
 * {
@@ -46,11 +47,16 @@ body {
   color: black;
 }
 
-.navbar .navbar-nav a {
+.navbar .navbar-nav a,
+.dropdown {
   color: black;
   display: inline-block;
   font-size: 1.1rem;
   margin: 0 1rem;
+}
+
+.navbar .navbar-nav .dropdown {
+  margin: 0;
 }
 
 .navbar .navbar-nav a:hover {
@@ -83,13 +89,33 @@ body {
   display: none;
 }
 
+/* nav searchform */
+.navbar .formcari {
+  position: absolute;
+  top: 100%;
+  right: 7%;
+  background-color: #fff;
+  width: 40rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .formcari input {
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
+  color: black;
+  padding: 1rem;
+}
+
 /* hero================================================================= */
 
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url("../img/dummy.jpg");
+  background-image: url("../img/dummy2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -175,7 +201,7 @@ body {
 .produk,
 .lokasi,
 .kategori {
-  padding: 8rem 7% 1.4rem;
+  padding: 7rem 7% 1.4rem;
 }
 
 .about h2,
@@ -233,24 +259,27 @@ body {
 
 .kategori .xparents {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-top: 5rem;
   justify-content: center;
   column-gap: 3rem;
-  row-gap: 3rem;
+  row-gap: 2rem;
 }
 
 .kategori .xparents .ctg-card {
   position: relative;
-  width: 300px; /* Sesuaikan ukuran */
-  height: 300px; /* Sesuaikan ukuran */
+  width: 100%; /* Sesuaikan ukuran */
+  height: 180px; /* Sesuaikan ukuran */
   overflow: hidden;
   border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  align-items: center;
 }
 
 .kategori .xparents .ctg-card img {
   width: 100%;
-  height: 100%;
+  /* height: 300px; */
   object-fit: cover;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -258,7 +287,7 @@ body {
 .kategori .xparents .ctg-card .overlay {
   position: absolute;
   bottom: 0;
-  background: rgba(121, 121, 121, 0.7); /* Background semi-transparan */
+  background: rgba(0, 0, 0, 0.39); /* Background semi-transparan */
   width: 100%;
   text-align: center;
   padding: 10px 0;
@@ -274,6 +303,116 @@ body {
 .kategori .xparents .ctg-card:hover img {
   transform: scale(1.1); /* Zoom in effect */
   opacity: 0.85; /* Warna pudar sedikit */
+}
+
+/* produk */
+.produk .xparent {
+  display: flex;
+  flex-wrap: wrap;
+  /* penting */
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+/* produk22 */
+.produk .container {
+  display: flex;
+  flex-wrap: wrap;
+  place-items: center;
+}
+
+.container .card {
+  width: 350px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 0.7em;
+  margin-bottom: 20px;
+}
+
+.container .card .cardcontent {
+  background: #fff;
+  margin: 1em;
+}
+
+.container .card .cardimg {
+  background-color: #6750ec;
+  width: 100%;
+  height: 265px;
+  border-radius: 0.7em 0.7em 0 0;
+}
+
+.cardimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Atau gunakan object-fit: contain; jika ingin seluruh gambar terlihat */
+  border-radius: 0.7em 0.7em 0 0; /* Pastikan border-radius sama dengan elemen pembungkus */
+}
+
+@media screen and (min-width: 500px) {
+  .card {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+
+/* produk */
+
+.produk .xparent .produk-card .produk-img img {
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.produk-deskripsi {
+  margin: 0.6em 0;
+}
+
+.produk-deskripsi p {
+  font-size: 0.85em;
+  color: black;
+}
+
+.price {
+  margin-top: 1rem;
+}
+
+.produk-name,
+.price {
+  font-size: 1.3em;
+}
+
+.produk-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin-top: 2em;
+  gap: 15px;
+}
+
+.produk-button .goview,
+.gocart {
+  width: 350px;
+  display: flex;
+  background-color: var(--primary);
+  padding: 15px;
+  border-radius: 0.5em;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.produk-button .goview:hover,
+.gocart:hover {
+  background-color: var(--hover1);
+}
+
+.produk-button .goview a,
+.gocart a {
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 /* lokasi */
@@ -369,6 +508,39 @@ footer .credit {
   }
 }
 
+@media (min-width: 768px) {
+  /* Hide the submenu by default */
+  .produklist {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 1rem;
+    background-color: #fff; /* Optional: Background color for produklist */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Optional: produklist shadow */
+  }
+
+  /* Show produklist on hover */
+  .dropdown:hover .produklist {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(7px);
+    border-radius: 3px;
+  }
+
+  /* Optional: Styling the produklist links */
+  .produklist a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333; /* produklist link color */
+  }
+
+  .produklist a:hover {
+    background-color: #f1f1f1; /* produklist link hover background color */
+    color: #000; /* produklist link hover color */
+  }
+}
 @media (max-width: 768px) {
   html {
     font-size: 75%;
@@ -393,12 +565,24 @@ footer .credit {
     right: 0%;
   }
 
-  .navbar .navbar-nav a {
+  .navbar .navbar-nav a,
+  .dropdown {
     color: black;
     display: block;
-    margin: 1.5rem;
+    margin: 1rem;
     padding: 0.5rem;
     font-size: 1.8rem;
+  }
+
+  .navbar .navbar-nav .dropdown ul {
+    margin-left: 2rem;
+  }
+
+  .navbar .navbar-nav .dropdown ul li {
+    display: inline-block;
+    list-style-position: inside;
+    border-bottom: black solid 1px dotted;
+    border-top: black solid 1px dotted;
   }
 
   .navbar .navbar-nav a::after {
@@ -406,6 +590,14 @@ footer .credit {
   }
   .navbar .navbar-nav a:hover::after {
     transform: scaleX(0.4);
+  }
+
+  .kategori .xparents {
+    flex-direction: column;
+  }
+
+  .kategori .xparents .ctg-card {
+    height: 150px;
   }
 
   /*  */
